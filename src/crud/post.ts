@@ -2,9 +2,9 @@ import { client } from "../client"
 import { handleError } from "../error"
 import { PostInformation } from "../models/post"
 
-export const postDemo = async (postInformation?: PostInformation) => {
+export const postOne = async (postInformation?: PostInformation) => {
     try {
-        const response: { id: string } = await client.post(
+        const response = await client.post(
             '',
             postInformation ?? {
                 title: 'My Post Title',
@@ -12,7 +12,7 @@ export const postDemo = async (postInformation?: PostInformation) => {
             }
         )
 
-        return response.id
+        return response.data.id
     } catch (err: unknown) {
         handleError(err)
         return ''
